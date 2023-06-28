@@ -5,6 +5,7 @@
 {% block body %}
 
 <div class="Account">
+
     <h2 class="Account-title">Connexion</h2>
 
     <form method="post" class="Form">
@@ -16,7 +17,7 @@
         <label for="inputEmail">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="Form-component-input" autocomplete="email" required autofocus>
 
-        <label for="inputPassword">Password</label>
+        <label for="inputPassword">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="Form-component-input" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -35,5 +36,8 @@
         <button class="Form-button" type="submit">Se connecter</button>
 
     </form>
+
+    <a class="" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
 </div>
+
 {% endblock %}

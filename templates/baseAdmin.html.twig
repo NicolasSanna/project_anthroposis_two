@@ -10,40 +10,40 @@
     </head>
     <body class="body">
 
-        <main class="main">
+        {% include '_partials/header.html.twig' %}
+          
+        <main class="mainAdmin">
 
-            {% include '_partials/header.html.twig' %}
-
-            <aside class="aside">
+            {% include '_partials/menuAdmin.html.twig' %}
+      
+            <section class="sectionAdmin">
 
                 {% if app.user %}
                     <div class="Message Success-message">
                         Vous êtes connecté en tant que {{ app.user.pseudo }}
                     </div>
                 {% endif %}
-
                 {% for message in app.flashes('success') %}
                     <div class="Message Success-message">
                         {{ message }}
                     </div>
                 {% endfor %}
-
                 {% for message in app.flashes('error') %}
                     <div class="Message Error-message">
                         {{ message }}
                     </div>
                 {% endfor %}
-
-            </aside>
-
-            {% block body %}{% endblock %}
-            {% include '_partials/footer.html.twig'%}
+          
+                {% block body %}{% endblock %}
+               
+            </section>
 
         </main>
+
+        {% include '_partials/footer.html.twig'%}
 
         {% block javascripts %}
             <script type="module" src="{{ asset('js/app.js') }}"></script>
         {% endblock %}
-
     </body>
 </html>

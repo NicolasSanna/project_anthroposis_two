@@ -611,6 +611,9 @@ table thead th {
   font-size: 20px;
   padding-top: 30px;
 }
+.Account-p {
+  margin: 10px;
+}
 
 @media screen and (min-width: 1200px) {
   .MenuAdmin {
