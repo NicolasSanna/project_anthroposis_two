@@ -11,6 +11,23 @@
     <body class="body">
         <main class="main">
             {% include '_partials/header.html.twig' %}
+            <aside class="aside">
+                {% if app.user %}
+                    <div class="Message Success-message">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                {% for message in app.flashes('success') %}
+                    <div class="Message Success-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="Message Error-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </aside>
             {% block body %}{% endblock %}
             {% include '_partials/footer.html.twig'%}
         </main>
