@@ -41,5 +41,7 @@
 
 {% block javascripts %}
 
+     {{ parent() }}
     <script type="module" src="{{ asset('js/modules/DeleteArticleManager.js') }}"></script>
+
 {% endblock %}

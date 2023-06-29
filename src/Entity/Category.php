@@ -21,7 +21,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'category')]
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'category', cascade:['persist', 'remove'])]
     private Collection $articles;
 
     public function __construct()
