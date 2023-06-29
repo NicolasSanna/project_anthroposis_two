@@ -4,7 +4,7 @@
     <h3 class="MenuAdmin-title">Menu</h3>
     <ul class="MenuAdmin-list">
         <li class="MenuAdmin-list-item">
-            <a class="MenuAdmin-list-item-link" href="">Tableau de bord</a>
+            <a class="MenuAdmin-list-item-link" href="{{ path('app_dashboard') }}">Tableau de bord</a>
         </li>
         <li class="MenuAdmin-list-item">
             <a class="MenuAdmin-list-item-link" href="">Informations personnelles</a>
@@ -18,7 +18,7 @@
                 <a class="MenuAdmin-list-item-link" href="{{ path('app_article_new') }}">Nouvel article</a>
             </li>
             <li class="MenuAdmin-list-item">
-                <a class="MenuAdmin-list-item-link" href="">Mes articles</a>
+                <a class="MenuAdmin-list-item-link" href="{{ path('app_article_index') }}">Mes articles</a>
             </li>
 
         <?php endif;?>

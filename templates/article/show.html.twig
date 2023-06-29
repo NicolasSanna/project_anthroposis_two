@@ -1,0 +1,22 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+
+<article class="Article">
+    <p class="Article-author">{{ article.user.pseudo }} - {{ article.createdAt|date('d/mY à H:i')}}</p>
+    <p class="Article-title">{{ article.title }}</p>
+    <p class="Article-description">{{ article.description }}</p>
+
+        <div class="Article-boxImg">
+            <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }} " alt="">
+        </div>
+
+    <p class="Article-content">{{ article.content }}</p>
+
+    <hr class="Article-hr">
+
+</article>
+
+{% endblock %}

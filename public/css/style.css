@@ -553,8 +553,16 @@ table thead th {
 .Admin-delete {
   color: #db3535;
   text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: 16px;
 }
 .Admin-modify {
+  text-decoration: none;
+  color: #917237;
+}
+.Admin-show {
   text-decoration: none;
   color: #917237;
 }

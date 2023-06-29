@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -38,6 +39,21 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+     /**
+     * @return Article
+     */
+   public function findByAuthor(User $user, Article $article): Article|null
+   {
+       return $this->createQueryBuilder('a')
+            ->where('a.slug = :slug')
+            ->andWhere('a.user = :user')
+            ->setParameter('user', $user)
+            ->setParameter('slug', $article->getSlug())
+            ->getQuery()
+            ->getOneOrNullResult()
+       ;
+   }
 
 //    /**
 //     * @return Article[] Returns an array of Article objects
