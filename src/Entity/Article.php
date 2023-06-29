@@ -37,7 +37,7 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
@@ -146,7 +146,7 @@ class Article
         return $this->user;
     }
 
-    public function setUser(?User $user): static
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
