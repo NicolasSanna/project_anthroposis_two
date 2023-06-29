@@ -63,6 +63,24 @@
             }
         }
 
+        &-inputCheckbox
+        {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid $secondColor;
+            transition: 0.5s;
+            outline: none;
+            display:flex;
+            flex-direction: column;
+
+            &:focus
+            {
+                border: 3px solid $firstColor;
+            }
+        }
+
         &-button
         {
             background-color: $firstColor;

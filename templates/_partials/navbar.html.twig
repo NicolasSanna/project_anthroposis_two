@@ -1,4 +1,4 @@
-{% block content %}
+{% block body %}
 
 <nav class="Header-Navbar">
     <div class="Header-Navbar-menu">
@@ -20,7 +20,7 @@
                     <a class="Header-Navbar-menu-list-item-link" href="{{ path('app_dashboard') }}">Administration</a>
                 </li>
                 <li class="Header-Navbar-menu-list-item">
-                    <a class="Header-Navbar-menu-list-item-link" href=""></a>
+                    <a class="Header-Navbar-menu-list-item-link" href="">Bienvenue {{ app.user.pseudo }}</a>
                 </li>
                 <li class="Header-Navbar-menu-list-item">
                     <a class="Header-Navbar-menu-list-item-link" href="{{ path('app_logout') }}">Déconnexion</a>

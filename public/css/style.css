@@ -283,6 +283,20 @@ table thead th {
 .Form-component-input:focus {
   border: 3px solid #917237;
 }
+.Form-component-inputCheckbox {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  transition: 0.5s;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+}
+.Form-component-inputCheckbox:focus {
+  border: 3px solid #917237;
+}
 .Form-component-button {
   background-color: #917237;
   color: white;

@@ -52,10 +52,10 @@ class ChangePasswordFormType extends AbstractType
                             'message' => 'Le mot de passe doit contenir au moins un caractère spécial.',
                         ]),
                     ],
-                    'label' => 'New password',
+                    'label' => 'Nouveau mot de passe',
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => 'Confirmation du nouveau mot de passe',
                 ],
                 'invalid_message' => 'Le mot de passe et sa confirmation ne correspondent pas',
                 // Instead of being set onto the object directly,

@@ -16,12 +16,6 @@
 
             <aside class="aside">
 
-                {% if app.user %}
-                    <div class="Message Success-message">
-                        Vous êtes connecté en tant que {{ app.user.pseudo }}
-                    </div>
-                {% endif %}
-
                 {% for message in app.flashes('success') %}
                     <div class="Message Success-message">
                         {{ message }}
