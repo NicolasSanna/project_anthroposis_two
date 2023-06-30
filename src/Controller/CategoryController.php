@@ -44,7 +44,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categories/editer/{slug}.html', name:'app_category_edit', methods:['GET', 'POST'])]
+    #[Route('/categorie/editer/{slug}.html', name:'app_category_edit', methods:['GET', 'POST'])]
     public function edit(CategoryRepository $categoryRepository, Category $category, Request $request, Slugger $slugger): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);

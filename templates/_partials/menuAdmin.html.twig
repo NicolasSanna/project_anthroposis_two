@@ -10,7 +10,7 @@
             <a class="MenuAdmin-list-item-link" href="">Informations personnelles</a>
         </li>
 
-        <?php if (UserSession::isAuthor() || UserSession::isAdmin()):?>
+        {% if is_granted('ROLE_USER') %}
 
             <h3 class="MenuAdmin-title">Gestion d'Auteur</h3>
 
@@ -21,9 +21,9 @@
                 <a class="MenuAdmin-list-item-link" href="{{ path('app_article_index') }}">Mes articles</a>
             </li>
 
-        <?php endif;?>
+        {% endif %}
 
-        <?php if(UserSession::isAdmin()):?>
+        {% if is_granted ('ROLE_ADMIN') %}
 
             <h3 class="MenuAdmin-title">Gestion d'Administrateur</h3>
 
@@ -53,7 +53,8 @@
                 <a class="MenuAdmin-list-item-link" href="">Gérer les commentaires</a>
             </li> -->
 
-        <?php endif;?>
+        {% endif %}
+        
     </ul>
 </div>
 
