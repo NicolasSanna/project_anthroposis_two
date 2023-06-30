@@ -1,4 +1,9 @@
 {{ form_start(form,{'attr': {'class': 'Form'}}) }}
-    {{ form_widget(form) }}
+    {{ form_row( form.title ) }}
+    {{ form_row( form.description ) }}
+    {{ form_row( form.content ) }}
+    {{ form_row( form.image ) }}
+    {{ form_row( form.category ) }}
+    <p>Pour ajouter plusieurs catégories appuyez sur la touche CTRL de votre clavier</p>
     <button class="Form-button">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

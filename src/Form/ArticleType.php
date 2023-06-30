@@ -76,11 +76,10 @@ class ArticleType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => false,
                 'choice_label' => 'label',
                 'label' => 'Catégorie',
-                'attr' => ['class' => 'Form-component-inputCheckbox']
-                
+                'attr' => ['class' => 'Form-component-input'],
             ])
         ;
     }
