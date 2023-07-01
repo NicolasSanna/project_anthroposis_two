@@ -129,7 +129,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/supprimer/{slug}', name: 'app_article_delete', methods: ['POST'])]
+    #[Route('/article/supprimer/{slug}.html', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem): Response|JsonResponse
     {
 

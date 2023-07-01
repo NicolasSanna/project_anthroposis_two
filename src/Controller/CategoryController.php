@@ -66,7 +66,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/supprimer/{id}', name:'app_category_delete', methods:['POST'])]
+    #[Route('/categorie/supprimer/{id}.html', name:'app_category_delete', methods:['POST'])]
     public function delete(Category $category, Request $request, CategoryRepository $categoryRepository): Response|JsonResponse
     {
         $categoryId = $category->getId();
