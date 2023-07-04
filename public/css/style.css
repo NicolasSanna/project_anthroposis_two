@@ -622,6 +622,65 @@ table thead th {
   font-size: 16px;
   text-align: center;
 }
+.Home-article {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #7A7A7A;
+}
+.Home-article-blockImg {
+  text-align: center;
+}
+.Home-article-blockImg-img {
+  width: 100%;
+  height: 100%;
+}
+.Home-article-blockInfos {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.Home-article-blockInfos-top-author {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Home-article-blockInfos-top-date {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Home-article-blockInfos-top-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: "Baskerville";
+  font-weight: 300;
+  font-size: 24px;
+}
+.Home-article-blockInfos-top-description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Home-article-blockInfos-bottom-p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+.Home-article-blockInfos-bottom-a {
+  background-color: #917237;
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+  border: 3px solid #917237;
+}
+.Home-article-blockInfos-bottom-a:hover {
+  background-color: white;
+  color: #917237;
+}
 
 .Account {
   display: flex;
@@ -637,6 +696,16 @@ table thead th {
   margin: 10px;
 }
 
+@media screen and (min-width: 700px) {
+  .Home-content {
+    display: flex;
+    flex-direction: row;
+  }
+  .Home-article {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
 @media screen and (min-width: 1200px) {
   .MenuAdmin {
     position: relative;

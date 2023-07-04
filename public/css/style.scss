@@ -215,6 +215,96 @@
             text-align: center;
         }
     }
+
+    &-article
+    {
+        width:100%;
+        margin-top:20px;
+        margin-bottom:20px;
+
+        border:1px solid #7A7A7A;
+
+        &-blockImg
+        {
+                
+            text-align: center;
+
+            &-img
+            {
+                width:100%;
+                height:100%;
+            }
+        }
+
+        &-blockInfos
+        {
+            margin-left:5%;
+            margin-right:5%;
+            margin-top:5%;
+            margin-bottom:5%;
+
+            display:flex;
+            flex-direction: column;
+
+            &-top
+            {
+                 &-author
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                }
+
+                &-date
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                }
+
+                &-title
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    font-family: $baskerville;
+                    font-weight:300;
+                    font-size:24px;
+                }
+
+                &-description
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                }                       
+            }
+            
+           &-bottom
+            {
+                &-p
+                {
+                    margin-top:20px;
+                    margin-bottom:20px;
+                    text-align: right;
+                }
+
+                &-a
+                {         
+                    background-color: $firstColor;
+                    border: none;
+                    color: white;
+                    padding: 12px 32px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: 0.5s;
+                    border:3px solid $firstColor;
+
+                    &:hover
+                    {
+                        background-color: white;
+                        color:$firstColor;
+                    } 
+                }
+           }
+        }
+    }
 }
 
 // ACCOUNT
@@ -235,6 +325,25 @@
     &-p
     {
         margin:10px;
+    }
+}
+
+@media screen AND (min-width: 700px)
+{
+    .Home
+    {
+        &-content
+        {
+            display:flex;
+            flex-direction: row;
+        }
+
+                 
+        &-article
+        {
+            margin-left:10px;
+            margin-right:10px;
+        }
     }
 }
 
