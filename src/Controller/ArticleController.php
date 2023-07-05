@@ -11,7 +11,7 @@ use App\Entity\Article;
 #[Route('/articles')]
 class ArticleController extends AbstractController
 {
-    #[Route('', name: 'app_articles_index')]
+    #[Route('.html', name: 'app_articles_index', methods:['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
