@@ -1,26 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}{{ category.label }}{% endblock %}
 
 {% block body %}
 
 <div class="Page">
-
-    <h2 class="Page-title">Articles</h2>
+    <h2 class="Page-title">{{ category.label }}</h2>
     <div class="Page-articles">
 
-        {% for article in articles %}
+        {% for article in category.articles %}
 
             <div class="Page-articles-article">
                 <p class="Page-articles-article-author">{{ article.user.pseudo }}</p>
-                <p class="Page-articles-article-date">{{ article.createdAt|date('Y/m/d à H:i') }}</p>
+                <p class="Page-articles-article-date">{{ article.createdAt|date('d/mY à H:i') }}</p>
                 <h3 class="Page-articles-article-title"><a  class="Page-articles-article-link" href="{{ path('app_articles_article_show', {'slug': article.slug}) }}">{{ article.title }}</a></h3>
                 <p class="Page-articles-article-description">{{ article.description }}</p>
                 <hr>
             </div>
 
         {% endfor %}
-
     </div>
 </div>
 

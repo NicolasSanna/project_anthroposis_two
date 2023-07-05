@@ -1,39 +1,20 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Catégories{% endblock %}
 
 {% block body %}
+<div class="Page">
+    <h2 class="Page-title">Catégories</h2>
 
-<div class="Admin">
-    <h2 class="Admin-title">Catégories</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Catégorie</th>
-                <th colspan="3">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="Page-categories">
 
-            {% for category in categories %}
+        {% for category in categories %}
 
-                <tr id="Admin-Category-{{ category.id }}">
-                    <td>{{ category.label }}</td>
-                    <td><a class="Admin-modify" href="{{ path('app_category_edit', {'slug': category.slug}) }}">Modifier</a></td>
-                    <td>{% include 'category/_delete_form.html.twig' %}</td>
-                </tr>
-            
-            {% endfor %}
+            <div class="Page-categories-category">
+                <h3 class="Page-categories-category-title"><a  class="Page-categories-category-title-link" href="{{ path('app_categories_category_show', {'slug': category.slug}) }}">{{ category.label }}</a></h3>
+            </div>
 
-        </tbody>
-    </table>
+        {% endfor %}
+    </div>
 </div>
-
-{% endblock %}
-
-{% block javascripts %}
-
-    {{ parent() }}
-    <script type="module" src="{{ asset('js/modules/DeleteCategoryManager.js') }}"></script>
-
 {% endblock %}
