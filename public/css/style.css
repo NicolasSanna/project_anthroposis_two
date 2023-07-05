@@ -393,6 +393,7 @@ table thead th {
 }
 .Page-articles-article-description {
   line-height: 25px;
+  margin-bottom: 10px;
 }
 .Page-articles-article-category {
   margin-top: 15px;
