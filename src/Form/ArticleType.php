@@ -54,7 +54,7 @@ class ArticleType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'required' => true,
-                'attr' => ['class' => 'Form-component-input'],
+                'attr' => ['class' => 'Form-component-input', 'rows' => 10],
                 'label' => 'Contenu'
             ])
             ->add('image', FileType::class, [
