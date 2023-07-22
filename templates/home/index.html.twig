@@ -21,11 +21,11 @@
                 <div class="Home-article-blockInfos-top">
                     <p class="Home-article-blockInfos-top-author">{{ article.user.pseudo }}</p>
                     <p class="Home-article-blockInfos-top-date">{{ article.createdAt|date('d/mY à H:i')}}</p>
-                    <h4 class="Home-article-blockInfos-top-title">{{ article.title | slice(0, 50) }} [...]</h4>
+                    <h4 class="Home-article-blockInfos-top-title">{{ article.title | slice (0, 50) }} [...]</h4>
                     <p class="Home-article-blockInfos-top-description">{{ article.description | slice (0, 50) }} [...]</p>
                 </div>
                 <div class="Home-article-blockInfos-bottom">
-                    <p class="Home-article-blockInfos-bottom-p"><a class="Home-article-blockInfos-bottom-a" href="">Lire</a></p>
+                    <p class="Home-article-blockInfos-bottom-p"><a class="Home-article-blockInfos-bottom-a" href="{{ path('app_articles_article_show', {'slug': article.slug}) }}">Lire</a></p>
                 </div>
             </div>
         </article>
