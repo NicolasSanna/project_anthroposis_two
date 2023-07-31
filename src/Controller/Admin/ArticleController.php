@@ -3,17 +3,17 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
+use App\Form\ArticleType;
+use App\Services\Slugger;
+use App\Services\RegisterImage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
-use App\Services\Slugger;
-use App\Services\RegisterImage;
-use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use DateTimeImmutable;
 
 #[Route('/admin')]
 class ArticleController extends AbstractController
