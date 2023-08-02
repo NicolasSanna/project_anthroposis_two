@@ -24,7 +24,7 @@
                     <tr id="Admin-Article-{{ article.id }}">
                         <td>{{ article.title }}</td>
                         <td>{{ article.description }}</td>
-                        <td>{{ article.createdAt|date('Y/m/d à H:i') }}</td>
+                        <td>{{ article.createdAt|date('d/m/Y à H:i') }}</td>
                         <td><a class="Admin-show" href="{{ path('app_article_show', {'slug': article.slug}) }}">Voir</a></td>
                         <td><a class="Admin-modify" href="{{ path('app_article_edit', {'slug': article.slug}) }}">Modifier</a></td>
                         <td>{% include 'admin/article/_delete_form.html.twig' %}</td>

@@ -55,6 +55,18 @@ class ArticleRepository extends ServiceEntityRepository
        ;
    }
 
+   public function searchEngine(string $criteria = null): array
+   {
+        return $this->createQueryBuilder('a')
+            ->where('a.title LIKE :criteria')
+            ->orWhere('a.content LIKE :criteria')
+            ->orWhere('a.description LIKE :criteria')
+            ->setParameter('criteria', '%' . $criteria . '%')
+            ->getQuery()
+            ->getResult()
+        ;
+   }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
