@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route('/admin')]
 class DashboardController extends AbstractController
 {
-    #[Route('/tableau-de-bord.html', name: 'app_dashboard')]
+    #[Route('/tableau-de-bord.html', name: 'app_dashboard', methods:['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         $user = $userRepository->find($this->getUser());
@@ -23,7 +23,7 @@ class DashboardController extends AbstractController
 
         return $this->render('admin/dashboard/index.html.twig', [
             'countArticles' => $countArticles,
-            'createdAt' => $createdAt->format('d/m/Y à H:i')
+            'createdAtFr' => $createdAt->format('d/m/Y à H:i')
         ]);
     }
 
@@ -46,7 +46,7 @@ class DashboardController extends AbstractController
         }
 
         return $this->render('admin/user/edit.html.twig', [
-            'form' => $form
+            'form' => $form->createView()
         ]);
     }
 }
