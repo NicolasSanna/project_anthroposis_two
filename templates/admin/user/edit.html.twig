@@ -1,0 +1,15 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+<div class="Admin">
+
+    <h2 class="Admin-title">Informations personnelles</h2>
+
+    {% include 'admin/user/_form_edit.html.twig' %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{{ form_start(form,{'attr': {'class': 'Form'}}) }}
+    {{ form_row(form.lastname, {'attr': {'class': 'Form-component-input'}}) }}
+    {{ form_row(form.firstname, {'attr': {'class': 'Form-component-input'}}) }}
+    {{ form_row(form.email, {'attr': {'class': 'Form-component-input'}}) }}
+    {{ form_row(form.pseudo, {'attr': {'class': 'Form-component-input'}}) }}
+        <button class="Form-button" type="submit">Modifier mes informations</button>
+{{ form_end(form) }}

@@ -7,8 +7,11 @@
     <h2 class="Account-title">Modifier le mot de passe</h2>
 
     {{ form_start(resetForm, {'attr': {'class': 'Form'}}) }}
+
         {{ form_row(resetForm.plainPassword) }}
         <button class="Form-button">Modifier mon mot de passe</button>
+        
     {{ form_end(resetForm) }}
+    
 </div>
 {% endblock %}
