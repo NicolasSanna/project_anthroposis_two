@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
 
-#[Route('/categories')]
+#[Route(path: '/categories')]
 class CategoryController extends AbstractController
 {
-    #[Route('.html', name: 'app_categories_index', methods:['GET'])]
+    #[Route(path: '.html', name: 'app_categories_index', methods:['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
@@ -21,7 +21,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/{slug}.html', name: 'app_categories_category_show', methods:['GET'])]
+    #[Route(path: '/categorie/{slug}.html', name: 'app_categories_category_show', methods:['GET'])]
     public function show(Category $category, CategoryRepository $categoryRepository)
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);

@@ -12,10 +12,10 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Services\Slugger;
 
-#[Route('/admin')]
+#[Route(path: '/admin')]
 class CategoryController extends AbstractController
 {
-    #[Route('/categories.html', name:'app_category_index', methods:['GET'])]
+    #[Route(path: '/categories.html', name:'app_category_index', methods:['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findBy([], ['label' => 'ASC']);
@@ -25,7 +25,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/nouveau.html', name: 'app_category_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/categorie/nouveau.html', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CategoryRepository $categoryRepository, Slugger $slugger): Response
     {
         $category = new Category();
@@ -44,7 +44,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/editer/{slug}.html', name:'app_category_edit', methods:['GET', 'POST'])]
+    #[Route(path: '/categorie/editer/{slug}.html', name:'app_category_edit', methods:['GET', 'POST'])]
     public function edit(CategoryRepository $categoryRepository, Category $category, Request $request, Slugger $slugger): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);
@@ -66,7 +66,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/supprimer/{id}.html', name:'app_category_delete', methods:['POST'])]
+    #[Route(path: '/categorie/supprimer/{id}.html', name:'app_category_delete', methods:['POST'])]
     public function delete(Category $category, Request $request, CategoryRepository $categoryRepository): Response|JsonResponse
     {
         $categoryId = $category->getId();

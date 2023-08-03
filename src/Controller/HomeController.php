@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home', methods:['GET'])]
+    #[Route(path: '/', name: 'app_home', methods:['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([], ['created_at' => 'DESC'], 4);
@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/rechercher.html', name: 'app_search', methods:['GET', 'POST'])]
+    #[Route(path: '/rechercher.html', name: 'app_search', methods:['GET', 'POST'])]
     public function search(ArticleRepository $articleRepository, Request $request): Response
     {
         $form = $this->createForm(SearchType::class);

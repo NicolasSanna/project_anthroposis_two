@@ -15,10 +15,10 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use DateTimeImmutable;
 
-#[Route('/admin')]
+#[Route(path: '/admin')]
 class ArticleController extends AbstractController
 {
-    #[Route('/article/nouveau.html', name: 'app_article_new')]
+    #[Route(path: '/article/nouveau.html', name: 'app_article_new')]
     public function new(Request $request, ArticleRepository $articleRepository, RegisterImage $registerImage, Slugger $slugger): Response
     {
         $article = new Article();
@@ -57,7 +57,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/mes-articles.html', name: 'app_article_index', methods:['GET'])]
+    #[Route(path: '/article/mes-articles.html', name: 'app_article_index', methods:['GET'])]
     public function index(ArticleRepository $articleRepository)
     {
         $articles = $articleRepository->findBy(['user' => $this->getUser()]);
@@ -67,7 +67,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{slug}.html', name: 'app_article_show', methods:['GET'])]
+    #[Route(path: '/article/{slug}.html', name: 'app_article_show', methods:['GET'])]
     public function show(Article $article, ArticleRepository $articleRepository)
     {
         $article = $articleRepository->findOneBy(['user' => $this->getUser(), 'slug' => $article->getSlug()]);
@@ -77,7 +77,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/editer/{slug}.html', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/article/editer/{slug}.html', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, Slugger $slugger): Response
     {
         $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
@@ -130,7 +130,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/supprimer/{slug}.html', name: 'app_article_delete', methods: ['POST'])]
+    #[Route(path: '/article/supprimer/{slug}.html', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem): Response|JsonResponse
     {
 
