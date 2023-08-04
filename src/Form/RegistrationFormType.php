@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Email;
 
 
 class RegistrationFormType extends AbstractType
@@ -23,19 +24,54 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-            'attr' => ['class' => 'Form-component-input']
-            ])
+            'attr' => ['class' => 'Form-component-input'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Veuillez entrer une adresse e-mail',
+                ]),
+                new Email([
+                    'message' => 'L\'adresse e-mail "{{ value }}" n\'est pas valide.',
+                    'mode' => 'html5', // Pour utiliser la validation HTML5
+                ]),
+            ]])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
-                'attr' => ['class' => 'Form-component-input']
+                'attr' => ['class' => 'Form-component-input'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le champ ne doit pas être vide',
+                    ]),
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
-                'attr' => ['class' => 'Form-component-input']
+                'attr' => ['class' => 'Form-component-input'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le champ ne doit pas être vide',
+                    ]),
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                ],
             ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Pseudo',
-                'attr' => ['class' => 'Form-component-input']
+                'attr' => ['class' => 'Form-component-input'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le champ ne doit pas être vide',
+                    ]),
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Approuver les termes ',
