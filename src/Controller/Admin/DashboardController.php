@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route(path: '/admin')]
 class DashboardController extends AbstractController
 {
-    #[Route(path: '/tableau-de-bord.html', name: 'app_dashboard', methods:['GET'])]
+    #[Route(path: '/tableau-de-bord', name: 'app_dashboard', methods:['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         $user = $userRepository->find($this->getUser());
@@ -27,7 +27,7 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/informations-personnelles.html', name:'app_dashboard_personal_informations', methods:['GET', 'POST'])]
+    #[Route(path: '/informations-personnelles', name:'app_dashboard_personal_informations', methods:['GET', 'POST'])]
     public function edit_personal_informations(UserRepository $userRepository, Request $request): Response
     {
         $user = $userRepository->find($this->getUser());
