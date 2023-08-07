@@ -22,10 +22,10 @@ class HomeController extends AbstractController
     }
 
     #[Route(path: '/rechercher', name: 'app_search', methods:['GET', 'POST'])]
-    public function search(ArticleRepository $articleRepository, Request $request): Response
+    public function search(ArticleRepository $articleRepository, Request $req): Response
     {
         $form = $this->createForm(SearchType::class);
-        $form->handleRequest($request);
+        $form->handleRequest($req);
         $results = [];
 
         if ($form->isSubmitted() && $form->isValid())

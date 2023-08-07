@@ -28,12 +28,12 @@ class DashboardController extends AbstractController
     }
 
     #[Route(path: '/informations-personnelles', name:'app_dashboard_personal_informations', methods:['GET', 'POST'])]
-    public function edit_personal_informations(UserRepository $userRepository, Request $request): Response
+    public function edit_personal_informations(UserRepository $userRepository, Request $req): Response
     {
         $user = $userRepository->find($this->getUser());
 
         $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid())
         {

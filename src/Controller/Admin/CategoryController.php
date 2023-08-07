@@ -26,11 +26,11 @@ class CategoryController extends AbstractController
     }
 
     #[Route(path: '/categorie/nouveau', name: 'app_category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoryRepository $categoryRepository, Slugger $slugger): Response
+    public function new(Request $req, CategoryRepository $categoryRepository, Slugger $slugger): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
+        $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $category->setSlug($slugger->slugify($form->get('label')->getData()));
@@ -45,12 +45,12 @@ class CategoryController extends AbstractController
     }
 
     #[Route(path: '/categorie/editer/{slug}', name:'app_category_edit', methods:['GET', 'POST'])]
-    public function edit(CategoryRepository $categoryRepository, Category $category, Request $request, Slugger $slugger): Response
+    public function edit(CategoryRepository $categoryRepository, Category $category, Request $req, Slugger $slugger): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);
 
         $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
+        $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -67,16 +67,16 @@ class CategoryController extends AbstractController
     }
 
     #[Route(path: '/categorie/supprimer/{id}', name:'app_category_delete', methods:['POST'])]
-    public function delete(Category $category, Request $request, CategoryRepository $categoryRepository): Response|JsonResponse
+    public function delete(Category $category, Request $req, CategoryRepository $categoryRepository): Response|JsonResponse
     {
         $categoryId = $category->getId();
 
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) 
+        if ($this->isCsrfTokenValid('delete'.$category->getId(), $req->request->get('_token'))) 
         {
             $categoryRepository->remove($category, true);
         }
 
-        if($request->isXmlHttpRequest())
+        if($req->isXmlHttpRequest())
         {
             return $this->json($categoryId);
         }

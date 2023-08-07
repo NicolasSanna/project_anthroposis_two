@@ -19,13 +19,13 @@ use DateTimeImmutable;
 class ArticleController extends AbstractController
 {
     #[Route(path: '/article/nouveau', name: 'app_article_new')]
-    public function new(Request $request, ArticleRepository $articleRepository, RegisterImage $registerImage, Slugger $slugger): Response
+    public function new(Request $req, ArticleRepository $articleRepository, RegisterImage $registerImage, Slugger $slugger): Response
     {
         $article = new Article();
 
         $form = $this->createForm(ArticleType::class, $article);
 
-        $form->handleRequest($request);
+        $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -78,7 +78,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/editer/{slug}', name: 'app_article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, Slugger $slugger): Response
+    public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, Slugger $slugger): Response
     {
         $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
         
@@ -91,7 +91,7 @@ class ArticleController extends AbstractController
         $image = $checkArticle->getImage();
 
         $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -131,7 +131,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/supprimer/{slug}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem): Response|JsonResponse
+    public function delete(Request $req, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem): Response|JsonResponse
     {
 
         $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
@@ -144,7 +144,7 @@ class ArticleController extends AbstractController
 
         $articleId = $checkArticle->getId();
 
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $req->request->get('_token'))) {
 
             if($filesystem->exists('image_directory' . '/' . $article->getImage()))
             {
@@ -153,7 +153,7 @@ class ArticleController extends AbstractController
             $articleRepository->remove($article, true);
         }
 
-        if($request->isXmlHttpRequest())
+        if($req->isXmlHttpRequest())
         {
             return $this->json($articleId);
         }
