@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Type;
 
 class ResetPasswordRequestFormType extends AbstractType
 {
@@ -23,6 +24,10 @@ class ResetPasswordRequestFormType extends AbstractType
                     new Email([
                         'message' => 'L\'adresse e-mail "{{ value }}" n\'est pas valide.',
                         'mode' => 'html5', // Pour utiliser la validation HTML5
+                    ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
                     ]),
                 ],
             ])

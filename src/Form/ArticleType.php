@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Type;
 
 class ArticleType extends AbstractType
 {
@@ -34,6 +35,10 @@ class ArticleType extends AbstractType
                         'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
                     ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
+                    ]),
                 ],
             ])
             ->add('description', TextType::class, [
@@ -50,12 +55,31 @@ class ArticleType extends AbstractType
                         'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
                     ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
+                    ]),
                 ],
             ])
             ->add('content', TextareaType::class, [
                 'required' => true,
                 'attr' => ['class' => 'Form-component-input', 'rows' => 10],
-                'label' => 'Contenu'
+                'label' => 'Contenu',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le champ ne doit pas être vide',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'max' => 255,
+                        'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
+                    ]),
+                ],
             ])
             ->add('image', FileType::class, [
                 'required' => false,

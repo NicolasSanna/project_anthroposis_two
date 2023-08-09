@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Type;
 
 class CategoryType extends AbstractType
 {
@@ -27,6 +28,10 @@ class CategoryType extends AbstractType
                         'max' => 255,
                         'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
                     ]),
                 ],
             ])

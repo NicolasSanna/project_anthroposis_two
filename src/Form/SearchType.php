@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Type;
 
 class SearchType extends AbstractType
 {
@@ -23,6 +24,10 @@ class SearchType extends AbstractType
                     new Length([
                         'max' => 255,
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
                     ]),
                 ],
             ])

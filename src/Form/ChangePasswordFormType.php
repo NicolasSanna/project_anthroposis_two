@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Type;
 
 class ChangePasswordFormType extends AbstractType
 {
@@ -50,6 +51,10 @@ class ChangePasswordFormType extends AbstractType
                         new Regex([
                             'pattern' => '/[^a-zA-Z0-9]+/',
                             'message' => 'Le mot de passe doit contenir au moins un caractère spécial.',
+                        ]),
+                        new Type([
+                            'type' => 'string',
+                            'message' => 'Le champ doit être un texte.',
                         ]),
                     ],
                     'label' => 'Nouveau mot de passe',

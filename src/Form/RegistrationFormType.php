@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Type;
 
 
 class RegistrationFormType extends AbstractType
@@ -32,6 +33,10 @@ class RegistrationFormType extends AbstractType
                 new Email([
                     'message' => 'L\'adresse e-mail "{{ value }}" n\'est pas valide.',
                     'mode' => 'html5', // Pour utiliser la validation HTML5
+                ]),
+                new Type([
+                    'type' => 'string',
+                    'message' => 'Le champ doit être un texte.',
                 ]),
             ]])
             ->add('firstname', TextType::class, [

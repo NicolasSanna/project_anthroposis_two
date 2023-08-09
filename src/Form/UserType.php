@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Type;
 
 class UserType extends AbstractType
 {
@@ -27,6 +30,10 @@ class UserType extends AbstractType
                         'max' => 255,
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
                     ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
+                    ]),
                 ],
             ])
             ->add('firstname', TextType::class, [
@@ -41,9 +48,13 @@ class UserType extends AbstractType
                         'max' => 255,
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
                     ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
+                    ]),
                 ],
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'required' => true,
                 'attr' => ['class' => 'Form-component-input', 'maxlength' => 255],
@@ -54,6 +65,9 @@ class UserType extends AbstractType
                     new Length([
                         'max' => 255,
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                    new Email([
+                        'message' => 'L\'adresse email "{{ value }}" n\'est pas valide.',
                     ]),
                 ],
             ])
@@ -68,6 +82,10 @@ class UserType extends AbstractType
                     new Length([
                         'max' => 255,
                         'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                    ]),
+                    new Type([
+                        'type' => 'string',
+                        'message' => 'Le champ doit être un texte.',
                     ]),
                 ],
             ]);
