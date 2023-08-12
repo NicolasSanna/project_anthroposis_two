@@ -32,11 +32,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
 
-        - { path: ^/admin/categories.html, roles: ROLE_ADMIN }
-        - { path: ^/admin/categorie/nouveau.html, roles: ROLE_ADMIN }
-        - { path: ^/admin/categorie/editer/.*\.html$, roles: ROLE_ADMIN }
-        - { path: ^/admin/categorie/supprimer/.*\.html$, roles: ROLE_ADMIN }
-        
+        - { path: ^/admin/categories, roles: ROLE_ADMIN }
+        - { path: ^/admin/categorie/nouveau, roles: ROLE_ADMIN }
+        - { path: '^/admin/categorie/(editer|supprimer)/[^/]+', roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_USER }
 
 when@test:
