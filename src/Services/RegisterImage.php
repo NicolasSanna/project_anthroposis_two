@@ -4,11 +4,11 @@ namespace App\Services;
 
 use Symfony\Component\Form\Form;
 
-class RegisterImage
+class RegisterImage implements RegisterImageInterface
 {
     private Form $form;
 
-    public function setForm(Form $form)
+    public function setForm(Form $form): void
     {
         $this->form = $form;
     }

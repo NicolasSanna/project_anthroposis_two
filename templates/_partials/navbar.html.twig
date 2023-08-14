@@ -20,7 +20,7 @@
                     <a class="Header-Navbar-menu-list-item-link" href="{{ path('app_dashboard') }}">Administration</a>
                 </li>
                 <li class="Header-Navbar-menu-list-item">
-                    <a class="Header-Navbar-menu-list-item-link" href="">Bienvenue {{ app.user.pseudo }}</a>
+                    <a class="Header-Navbar-menu-list-item-link" href="{{ path('app_dashboard_personal_informations') }}">Bienvenue {{ app.user.pseudo }}</a>
                 </li>
                 <li class="Header-Navbar-menu-list-item">
                     <a class="Header-Navbar-menu-list-item-link" href="{{ path('app_logout') }}">Déconnexion</a>

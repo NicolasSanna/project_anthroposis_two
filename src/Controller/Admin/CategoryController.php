@@ -36,6 +36,7 @@ class CategoryController extends AbstractController
             $category->setSlug($slugger->slugify($form->get('label')->getData()));
             $categoryRepository->save($category, true);
 
+            $this->addFlash('success', sprintf('Catégorie %s créée avec succès !', $category->getlabel()));
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -57,6 +58,7 @@ class CategoryController extends AbstractController
             $category->setSlug($slugger->slugify($form->get('label')->getData()));
             $categoryRepository->save($category, true);
 
+            $this->addFlash('success', sprintf('Catégorie %s modifiée avec succès !', $category->getLabel()));
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

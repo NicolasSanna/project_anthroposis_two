@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route(path: '/inscription', name: 'app_register')]
+    #[Route(path: '/inscription', name: 'app_register', methods:['GET', 'POST'])]
     public function register(Request $req, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -61,7 +61,8 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Un email de vérification a été envoyé à votre boite email, cliquez sur le lien.');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

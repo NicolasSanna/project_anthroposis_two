@@ -4,11 +4,17 @@ namespace App\Services;
 
 use Cocur\Slugify\Slugify;
 
-class Slugger
+class Slugger implements SluggerInterface
 {
+    private Slugify $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+
     public function slugify(string $title): string
     {
-        $slugify = new Slugify();
-        return $slugify->slugify($title);
+        return $this->slugify->slugify($title);
     }
 }

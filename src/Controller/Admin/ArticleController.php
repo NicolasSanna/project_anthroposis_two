@@ -17,9 +17,16 @@ use DateTimeImmutable;
 
 #[Route(path: '/admin')]
 class ArticleController extends AbstractController
-{
-    #[Route(path: '/article/nouveau', name: 'app_article_new')]
-    public function new(Request $req, ArticleRepository $articleRepository, RegisterImage $registerImage, Slugger $slugger): Response
+{    
+    private Slugger $slugger;
+
+    public function __construct(Slugger $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
+    #[Route(path: '/article/nouveau', name: 'app_article_new', methods:['GET', 'POST'])]
+    public function new(Request $req, ArticleRepository $articleRepository, RegisterImage $registerImage): Response
     {
         $article = new Article();
 
@@ -42,13 +49,13 @@ class ArticleController extends AbstractController
             }
             
             $article->setUser($this->getUser())
-                    ->setSlug($slugger->slugify($form->get('title')->getData()))
+                    ->setSlug($this->slugger->slugify($form->get('title')->getData()))
                     ->setCreatedAt(new DateTimeImmutable())
                     ->setUpdatedAt(new DateTimeImmutable());
 
             $articleRepository->save($article, true);
 
-            $this->addFlash('success', 'Article ajouté avec succès !');
+            $this->addFlash('success', sprintf('Article %s ajouté avec succès !', $article->getTitle()));
             return $this->redirectToRoute('app_article_new', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -78,7 +85,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/editer/{slug}', name: 'app_article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, Slugger $slugger): Response
+    public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem): Response
     {
         $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
         
@@ -96,10 +103,11 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $article->setUser($this->getUser());
-            $article->setSlug($slugger->slugify($form->get('title')->getData()));
+            $article->setSlug($this->slugger->slugify($form->get('title')->getData()));
             $article->setUpdatedAt(new DateTimeImmutable());
 
-            if ($form->get('image')->getData() != null) {
+            if ($form->get('image')->getData() != null) 
+            {
 
                 $registerImage->setForm($form);
                 $fileName = $registerImage->saveImage();
@@ -120,7 +128,7 @@ class ArticleController extends AbstractController
             }
            
             $articleRepository->save($article, true);
-
+            $this->addFlash('success', sprintf('Article %s modifié avec succès !', $article->getTitle()));
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -144,7 +152,8 @@ class ArticleController extends AbstractController
 
         $articleId = $checkArticle->getId();
 
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $req->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $req->request->get('_token'))) 
+        {
 
             if($filesystem->exists('image_directory' . '/' . $article->getImage()))
             {
