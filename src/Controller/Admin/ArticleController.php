@@ -65,7 +65,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/mes-articles', name: 'app_article_index', methods:['GET'])]
-    public function index(ArticleRepository $articleRepository)
+    public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy(['user' => $this->getUser()]);
 
@@ -75,7 +75,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/{slug}', name: 'app_article_show', methods:['GET'])]
-    public function show(Article $article, ArticleRepository $articleRepository)
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         $article = $articleRepository->findOneBy(['user' => $this->getUser(), 'slug' => $article->getSlug()]);
 

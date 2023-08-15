@@ -22,7 +22,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route(path: '/categorie/{slug}', name: 'app_categories_category_show', methods:['GET'])]
-    public function show(Category $category, CategoryRepository $categoryRepository)
+    public function show(Category $category, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);
 

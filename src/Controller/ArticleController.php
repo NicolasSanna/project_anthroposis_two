@@ -22,7 +22,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/{slug}', name: 'app_articles_article_show', methods:['GET'])]
-    public function show(Article $article, ArticleRepository $articleRepository)
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         $article = $articleRepository->findOneBy(['slug' => $article->getSlug()]);
 
