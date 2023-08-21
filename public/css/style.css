@@ -241,6 +241,7 @@ table thead th {
   margin: 20px 0px;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
 }
 .Form-component {
   display: flex;
