@@ -601,7 +601,7 @@ table thead th {
   background-color: #917237;
 }
 
-.modal {
+.Modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -612,10 +612,9 @@ table thead th {
   align-items: center;
   justify-content: center;
   display: none;
+  z-index: 1000;
 }
-
-.confirmation-dialog {
-  display: block;
+.Modal-dialog {
   background-color: white;
   border: 1px solid #ccc;
   padding: 20px;
@@ -624,21 +623,17 @@ table thead th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
 }
-
-.confirmation-dialog h2 {
+.Modal-dialog-h2 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-.confirmation-dialog p {
+.Modal-dialog-p {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-.confirmation-dialog button {
-  background-color: #917237; /* Green */
+.Modal-dialog-button {
+  background-color: #917237;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -649,6 +644,9 @@ table thead th {
   cursor: pointer;
   transition-duration: 0.4s;
   margin-top: 10px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .Home {

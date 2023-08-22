@@ -3,9 +3,10 @@ class DeleteArticleManager
     constructor()
     {
         this.deleteForms = document.querySelectorAll('.Admin-Article-delete-Form');
-        this.modal = document.querySelector('.modal');
-        this.confirmBtn = document.querySelector('.confirm-button');
-        this.cancelBtn = document.querySelector('.cancel-button');
+        this.modal = document.querySelector('.Modal');
+        this.confirmBtn = document.getElementById('confirm');
+        this.cancelBtn = document.getElementById('cancel');
+        this.currentDeleteForm = '';
 
         this.installEventHandlers();
     }
@@ -43,6 +44,7 @@ class DeleteArticleManager
                 'X-Requested-With': 'XMLHttpRequest'
             },
             body:formData
+
         };
 
         const response = await fetch(url, options);

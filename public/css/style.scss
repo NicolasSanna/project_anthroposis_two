@@ -178,8 +178,7 @@
 }
 
 // MODAL SUPPRESSION
-
-.modal 
+.Modal 
 {
     position: fixed;
     top: 0;
@@ -191,51 +190,52 @@
     align-items: center;
     justify-content: center;
     display:none;
-}
-
-.confirmation-dialog 
-{
-    display: block;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 1000;
-  }
-  
-.confirmation-dialog h2 
-{
-    margin-top:10px;
-    margin-bottom:10px;
-}
 
-.confirmation-dialog p 
-{
-    margin-top:10px;
-    margin-bottom:10px;
-}
+    &-dialog
+    {
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-.confirmation-dialog button 
-{
-    background-color:$firstColor; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor:pointer;
-    transition-duration: 0.4s;
-    margin-top:10px;
+        &-h2
+        {
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+
+        &-p
+        {
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+
+        &-button
+        {
+            background-color:$firstColor;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor:pointer;
+            transition-duration: 0.4s;
+            margin-top:10px;
+            font-weight: bold;
+            margin-left:5px;
+            margin-right:5px;
+        }
+    }
 }
 
 // HOME
-
 .Home
 {
     background-image: url('../img/zaini-izzuddin-55btQzyDiO8-unsplash.jpg');
@@ -365,7 +365,6 @@
 }
 
 // ACCOUNT
-
 .Account
 {
     display:flex;
