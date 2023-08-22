@@ -102,9 +102,9 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $article->setUser($this->getUser());
-            $article->setSlug($this->slugger->slugify($form->get('title')->getData()));
-            $article->setUpdatedAt(new DateTimeImmutable());
+            $article->setUser($this->getUser())
+                    ->setSlug($this->slugger->slugify($form->get('title')->getData()))
+                    ->setUpdatedAt(new DateTimeImmutable());
 
             if ($form->get('image')->getData() != null) 
             {
