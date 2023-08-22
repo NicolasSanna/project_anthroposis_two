@@ -18,11 +18,11 @@ class DeleteArticleManager
 
         for (const deleteForm of this.deleteForms)
         {
-            deleteForm.addEventListener('submit', this.onDeleteSubmit.bind(this));
+            deleteForm.addEventListener('submit', this.onSubmitDelete.bind(this));
         }
     }
 
-    onDeleteSubmit(e)
+    onSubmitDelete(e)
     {
         e.preventDefault();
 
