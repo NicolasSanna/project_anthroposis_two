@@ -2,45 +2,65 @@ class DeleteArticleManager
 {
     constructor()
     {
-        this.deleteForms = document.querySelectorAll('.Admin-Article-delete-Form')
+        this.deleteForms = document.querySelectorAll('.Admin-Article-delete-Form');
+        this.modal = document.querySelector('.modal');
+        this.confirmBtn = document.querySelector('.confirm-button');
+        this.cancelBtn = document.querySelector('.cancel-button');
+
+        this.installEventHandlers();
+    }
+
+    installEventHandlers()
+    {       
+        this.confirmBtn.addEventListener('click', this.onClickConfirmBtn.bind(this));
+        this.cancelBtn.addEventListener('click', this.onClickCancelBtn.bind(this));
 
         for (const deleteForm of this.deleteForms)
         {
-            deleteForm.addEventListener('submit', this.onDeleteSubmit.bind(this))
+            deleteForm.addEventListener('submit', this.onDeleteSubmit.bind(this));
         }
     }
 
-    async onDeleteSubmit(e)
+    onDeleteSubmit(e)
     {
-        e.preventDefault()
+        e.preventDefault();
 
-        const confirmation = window.confirm('Êtes-vous sûr de vouloir supprimer cet article ?')
+        this.modal.style.display = 'block';
 
-        if(confirmation === true)
+        this.currentDeleteForm = e.currentTarget;
+    }
+
+    async onClickConfirmBtn()
+    {
+        const url = this.currentDeleteForm.action;
+
+        const formData = new FormData(this.currentDeleteForm);
+
+        const options = {
+
+            method: 'post',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body:formData
+        };
+
+        const response = await fetch(url, options);
+        const articleId = await response.json();
+
+        const row = document.getElementById(`Admin-Article-${articleId}`);
+
+        if (row != null)
         {
-            const url = e.currentTarget.action
-
-            const formData = new FormData(e.currentTarget);
-
-            const options = {
-
-                method: 'post',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body:formData
-            };
-
-            const response = await fetch(url, options)
-            const articleId = await response.json();
-
-            const row = document.getElementById(`Admin-Article-${articleId}`)
-
-            if (row != null)
-            {
-                row.remove();
-            }
+            row.remove();
         }
+
+        this.modal.style.display = 'none';
+    }
+
+    onClickCancelBtn()
+    {
+        this.modal.style.display = 'none';
     }
 }
 
