@@ -25,7 +25,8 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -34,7 +35,8 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }

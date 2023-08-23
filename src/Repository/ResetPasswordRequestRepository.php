@@ -30,7 +30,8 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -39,7 +40,8 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     {
         $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }

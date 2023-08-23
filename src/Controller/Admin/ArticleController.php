@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Form\ArticleType;
+use App\Repository\UserRepository;
 use App\Services\Slugger;
 use App\Services\RegisterImage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -85,9 +86,11 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/editer/{slug}', name: 'app_article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem): Response
+    public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, UserRepository $userRepository): Response
     {
-        $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
+        $user = $userRepository->findOneBy(['user' => $this->getUser()]);
+
+        $checkArticle = $articleRepository->findByAuthor($user, $article);
         
         if (!$checkArticle)
         {
@@ -128,6 +131,7 @@ class ArticleController extends AbstractController
             }
            
             $articleRepository->save($article, true);
+            
             $this->addFlash('success', sprintf('Article %s modifié avec succès !', $article->getTitle()));
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -139,10 +143,11 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/article/supprimer/{slug}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $req, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem): Response|JsonResponse
+    public function delete(Request $req, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem, UserRepository $userRepository): Response|JsonResponse
     {
-
-        $checkArticle = $articleRepository->findByAuthor($this->getUser(), $article);
+        $user = $userRepository->findOneBy(['user' => $this->getUser()]);
+        
+        $checkArticle = $articleRepository->findByAuthor($user, $article);
         
         if (!$checkArticle)
         {

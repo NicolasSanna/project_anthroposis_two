@@ -33,7 +33,8 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($req);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -78,9 +79,10 @@ class RegistrationController extends AbstractController
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($req, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
+        } 
+        catch (VerifyEmailExceptionInterface $exception) 
+        {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
             return $this->redirectToRoute('app_register');
         }
 

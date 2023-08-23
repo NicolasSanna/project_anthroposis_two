@@ -26,7 +26,8 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -35,7 +36,8 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -52,7 +54,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter('slug', $article->getSlug())
             ->getQuery()
             ->getOneOrNullResult()
-       ;
+        ;
    }
 
    public function searchEngine(string $criteria = null): array
