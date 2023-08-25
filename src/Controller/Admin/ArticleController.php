@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use DateTimeImmutable;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 #[Route(path: '/admin')]
 class ArticleController extends AbstractController
@@ -50,6 +51,7 @@ class ArticleController extends AbstractController
             }
             
             $article->setUser($this->getUser())
+                    ->setIsVerified(false)
                     ->setSlug($this->slugger->slugify($form->get('title')->getData()))
                     ->setCreatedAt(new DateTimeImmutable())
                     ->setUpdatedAt(new DateTimeImmutable());
@@ -65,6 +67,26 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/article/verifier-articles', name: 'app_articles_verify_index', methods:['GET'])]
+    public function verify_index(ArticleRepository $articleRepository): Response
+    {
+        $articles = $articleRepository->findBy(['isVerified' => false]);
+
+        return $this->render('admin/article/verify_index.html.twig', [
+            'articles' => $articles
+        ]);
+    }
+
+    #[Route(path: '/article/verifier-article/{slug}', name: 'app_article_verify_check', methods:['GET'])]
+    public function verifiy_check(Article $article, ArticleRepository $articleRepository): RedirectResponse
+    {
+
+        $article->setIsVerified(true);
+        $articleRepository->save($article, true);
+
+        return $this->redirectToRoute('app_articles_verify_index');
+    }
+
     #[Route(path: '/article/mes-articles', name: 'app_article_index', methods:['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
@@ -74,6 +96,8 @@ class ArticleController extends AbstractController
             'articles' => $articles
         ]);
     }
+
+
 
     #[Route(path: '/article/{slug}', name: 'app_article_show', methods:['GET'])]
     public function show(Article $article, ArticleRepository $articleRepository): Response
@@ -106,6 +130,7 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $article->setUser($this->getUser())
+                    ->setIsVerified(false)
                     ->setSlug($this->slugger->slugify($form->get('title')->getData()))
                     ->setUpdatedAt(new DateTimeImmutable());
 

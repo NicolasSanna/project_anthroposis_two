@@ -18,6 +18,10 @@
 
     <hr class="Article-hr">
 
+    {% if is_granted('ROLE_ADMIN') and app.user %}
+        <a class="Article-button" href="{{ path('app_article_verify_check', {'slug': article.slug}) }}">Valider</a>
+    {% endif %}
+
 </article>
 
 {% endblock %}

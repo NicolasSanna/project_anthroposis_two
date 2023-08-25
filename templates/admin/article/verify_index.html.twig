@@ -1,0 +1,38 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Articles à vérifier{% endblock %}
+
+{% block body %}
+
+<div class="Admin">
+
+    <h2 class="Admin-title">Articles à vérifier</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Date de création</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for article in articles %}
+
+                    <tr id="Admin-Article-{{ article.id }}">
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.description }}</td>
+                        <td>{{ article.createdAt|date('d/m/Y à H:i') }}</td>
+                        <td><a class="Admin-show" href="{{ path('app_article_show', {'slug': article.slug}) }}">Voir</a></td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+</div>
+
+{% endblock %}
