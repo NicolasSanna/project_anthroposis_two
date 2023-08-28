@@ -112,7 +112,7 @@ class ArticleController extends AbstractController
     #[Route(path: '/article/editer/{slug}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, UserRepository $userRepository): Response
     {
-        $user = $userRepository->findOneBy(['user' => $this->getUser()]);
+        $user = $userRepository->find($this->getUser());
 
         $checkArticle = $articleRepository->findByAuthor($user, $article);
         
@@ -127,7 +127,8 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($req);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
 
             $article->setUser($this->getUser())
                     ->setIsVerified(false)
@@ -170,7 +171,7 @@ class ArticleController extends AbstractController
     #[Route(path: '/article/supprimer/{slug}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $req, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem, UserRepository $userRepository): Response|JsonResponse
     {
-        $user = $userRepository->findOneBy(['user' => $this->getUser()]);
+        $user = $userRepository->find($this->getUser());
         
         $checkArticle = $articleRepository->findByAuthor($user, $article);
         
