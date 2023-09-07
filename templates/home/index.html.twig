@@ -20,8 +20,8 @@
             <div class="Home-article-blockInfos">
                 <div class="Home-article-blockInfos-top">
                     <p class="Home-article-blockInfos-top-author">{{ article.user.pseudo }}</p>
-                    <p class="Home-article-blockInfos-top-date">{{ article.createdAt|date('d/mY à H:i')}}</p>
-                    <h4 class="Home-article-blockInfos-top-title">{{ article.title | slice (0, 50) }} [...]</h4>
+                    <p class="Home-article-blockInfos-top-date">{{ article.createdAt|date('d/m/Y à H:i') }}</p>
+                    <h4 class="Home-article-blockInfos-top-title">{{ article.title|slice (0, 50) }} [...]</h4>
                     <p class="Home-article-blockInfos-top-description">{{ article.description | slice (0, 50) }} [...]</p>
                 </div>
                 <div class="Home-article-blockInfos-bottom">
