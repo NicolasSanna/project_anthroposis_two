@@ -6,8 +6,8 @@
 
 <article class="Article">
     <p class="Article-author">{{ article.user.pseudo }} - {{  article.createdAt|date('d/mY à H:i') }}</p>
-    <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/mY à H:i') }}</p>
-    <p class="Article-title">{{ article.title }}</p>
+    <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/m/Y à H:i') }}</p>
+    <h2 class="Article-title">{{ article.title }}</h2>
     <p class="Article-description">{{ article.description }}</p>
     <p class="Article-category"><a class="Article-category-link" href=""></a></p>
 
@@ -17,6 +17,30 @@
 
     <p class="Article-content">{{ article.content }}</p>
     <hr class="Article-hr">
+
 </article>
+
+ {% if app.user %}
+
+    {% include 'comment/_form.html.twig' %}
+
+{% endif %}
+
+<div class="Comment">
+
+    <h3 class="Comment-title">Commentaires</h3>
+
+    {% for comment in article.comments %}
+
+        <div class="Comment-commentList">
+            <p class="Comment-commentList-pseudo">{{comment.user.pseudo}}, le {{comment.createdAt|date('d/m/Y à H:i') }}</p>
+            <p class="Comment-commentList-content">{{comment.content}}</p>
+        </div>
+
+        <hr class="Comment-commentList-hr">
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}

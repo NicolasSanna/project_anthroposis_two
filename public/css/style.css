@@ -183,7 +183,6 @@ table thead th {
 .Article {
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 10%;
   padding-top: 20px;
 }
 .Article-title {
@@ -604,6 +603,28 @@ table thead th {
 
 .Query-message {
   background-color: #917237;
+}
+
+.Comment {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 20px;
+}
+.Comment-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Comment-commentList-content {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Comment-commentList-pseudo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Comment-commentList-hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .Modal {
