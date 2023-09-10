@@ -14,11 +14,17 @@
             <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }} " alt="">
         </div>
 
-    <p class="Article-content">{{ article.content }}</p>
+    {% set hasScriptTags = article.content|replace({'<script>': ''}) != article.content %}
+
+    {% if hasScriptTags %}
+        {{ article.content|escape }}
+    {% else %}
+        {{ article.content|raw }}
+    {% endif %}
 
     <hr class="Article-hr">
 
-    {% if is_granted('ROLE_ADMIN') and app.user %}
+    {% if app.user and is_granted('ROLE_ADMIN') %}
         <a class="Article-button" href="{{ path('app_article_verify_check', {'slug': article.slug}) }}">Valider</a>
     {% endif %}
 

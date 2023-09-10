@@ -184,6 +184,7 @@ table thead th {
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 .Article-title {
   font-family: "Baskerville";
@@ -217,7 +218,7 @@ table thead th {
 }
 .Article-hr {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .Article-button {
   background-color: #917237;
@@ -409,6 +410,10 @@ table thead th {
 .Page-articles-article-category-link {
   text-decoration: none;
   color: #917237;
+}
+.Page-articles-article-hr {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .Page-categories {
   margin-left: 10%;
@@ -612,7 +617,7 @@ table thead th {
 }
 .Comment-title {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .Comment-commentList-content {
   margin-top: 10px;

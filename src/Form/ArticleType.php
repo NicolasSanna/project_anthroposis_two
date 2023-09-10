@@ -62,7 +62,7 @@ class ArticleType extends AbstractType
                 ],
             ])
             ->add('content', TextareaType::class, [
-                'required' => true,
+                'required' => false,
                 'attr' => ['class' => 'Form-component-input', 'rows' => 10],
                 'label' => 'Contenu',
                 'constraints' => [

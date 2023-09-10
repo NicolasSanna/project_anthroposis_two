@@ -7,6 +7,12 @@
         {% block stylesheets %}
              <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
+        {% block javascripts %}
+            <script src="{{asset('js/tinymce/js/tinymce/tinymce.min.js')}}" referrerpolicy="origin"></script>
+            <script>tinymce.init({selector:'textarea#article_content', language : "fr_FR"});</script>
+            <script type="module" defer src="{{ asset('js/app.js') }}"></script>
+        {% endblock %}
+        
     </head>
     <body class="body">
 
@@ -37,9 +43,9 @@
 
         {% include '_partials/footer.html.twig'%}
 
-        {% block javascripts %}
+        {# {% block javascripts %}
             
             <script type="module" src="{{ asset('js/app.js') }}"></script>
-        {% endblock %}
+        {% endblock %} #}
     </body>
 </html>
