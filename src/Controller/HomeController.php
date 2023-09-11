@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route(path: '/', name: 'app_home', methods:['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findBy([], ['created_at' => 'DESC'], 4);
+        $articles = $articleRepository->findBy(['isVerified' => true], ['created_at' => 'DESC'], 4);
 
         return $this->render('home/index.html.twig', [
             'articles' => $articles,
