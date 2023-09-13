@@ -9,11 +9,24 @@
     <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/mY à H:i') }}</p>
     <p class="Article-title">{{ article.title }}</p>
     <p class="Article-description">{{ article.description }}</p>
+    <p class="Article-category">Catégories :</p>
+
+    {% for category in article.category %}
+        <a class="Article-category-link" href="{{ path('app_categories_category_show', {'slug': category.slug}) }}">
+            {{ category.label }}
+        </a>
+    {% endfor %}
+
     {% if article.image %}
         <div class="Article-boxImg">
-            <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }}" alt="{{ article.image }}">
+            <img 
+                class="Article-boxImg-img" 
+                src="{{ asset('image_directory/' ~ article.image ~ '') }}" 
+                alt="{{ article.image }}"
+            >
         </div>
     {% endif %}
+
     {% set hasScriptTags = article.content|replace({'<script>': ''}) != article.content %}
 
     {% if hasScriptTags %}
@@ -25,7 +38,12 @@
     <hr class="Article-hr">
 
     {% if app.user and is_granted('ROLE_ADMIN') %}
-        <a class="Article-button" href="{{ path('app_article_verify_check', {'slug': article.slug}) }}">Valider</a>
+        <a 
+            class="Article-button" 
+            href="{{ path('app_article_verify_check', {'slug': article.slug}) }}"
+        >
+            Valider
+        </a>
     {% endif %}
 
 </article>

@@ -14,7 +14,13 @@
             <div class="Page-articles-article">
                 <p class="Page-articles-article-author">{{ article.user.pseudo }}</p>
                 <p class="Page-articles-article-date">{{ article.createdAt|date('d/mY à H:i') }}</p>
-                <h3 class="Page-articles-article-title"><a  class="Page-articles-article-link" href="{{ path('app_articles_article_show', {'slug': article.slug}) }}">{{ article.title }}</a></h3>
+                <h3 class="Page-articles-article-title">
+                    <a  class="Page-articles-article-link"
+                        href="{{ path('app_articles_article_show', {'slug': article.slug}) }}"
+                    >
+                        {{ article.title }}
+                    </a>
+                 </h3>
                 <p class="Page-articles-article-description">{{ article.description }}</p>
                 <hr>
             </div>

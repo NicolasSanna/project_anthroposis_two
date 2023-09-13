@@ -9,12 +9,27 @@
     <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/m/Y à H:i') }}</p>
     <h2 class="Article-title">{{ article.title }}</h2>
     <p class="Article-description">{{ article.description }}</p>
-    <p class="Article-category"><a class="Article-category-link" href=""></a></p>
+    <p class="Article-category">Catégories :</p>
+
+    {% for category in article.category %}
+        <a 
+            class="Article-category-link" 
+            href="{{ path('app_categories_category_show', {'slug': category.slug}) }}"
+        >
+            {{ category.label }}
+        </a>
+    {% endfor %}
+    
         {% if article.image %}
             <div class="Article-boxImg">
-                <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '' ) }}" alt="{{ article.image }}">
+                <img 
+                    class="Article-boxImg-img" 
+                    src="{{ asset('image_directory/' ~ article.image ~ '' ) }}" 
+                    alt="{{ article.image }}"
+                >
             </div>
         {% endif %}
+
     {% set hasScriptTags = article.content|replace({'<script>': ''}) != article.content %}
 
     {% if hasScriptTags %}

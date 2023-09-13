@@ -11,7 +11,13 @@
         {% for category in categories %}
 
             <div class="Page-categories-category">
-                <h3 class="Page-categories-category-title"><a  class="Page-categories-category-title-link" href="{{ path('app_categories_category_show', {'slug': category.slug}) }}">{{ category.label }}</a></h3>
+                <h3 class="Page-categories-category-title">
+                    <a  class="Page-categories-category-title-link" 
+                        href="{{ path('app_categories_category_show', {'slug': category.slug}) }}"
+                    >
+                        {{ category.label }}
+                    </a>
+                </h3>
             </div>
 
         {% endfor %}
