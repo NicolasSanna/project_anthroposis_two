@@ -16,7 +16,7 @@ use DateTimeImmutable;
 #[Route(path: '/articles')]
 class ArticleController extends AbstractController
 {
-    #[Route(path: '', name: 'app_articles_index', methods:['GET'])]
+    #[Route(path: '', name: 'app_articles_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy(['isVerified' => true]);
@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/article/{slug}', name: 'app_articles_article_show', methods:['GET', 'POST'])]
+    #[Route(path: '/article/{slug}', name: 'app_articles_article_show', methods: ['GET', 'POST'])]
     public function show(Article $article, ArticleRepository $articleRepository, CommentRepository $commentRepository, Request $req): Response
     {
         $article = $articleRepository->findOneBy(['slug' => $article->getSlug()]);
@@ -42,10 +42,11 @@ class ArticleController extends AbstractController
             $comment->setContent($commentForm->get('content')->getData())
                     ->setArticle($article)
                     ->setCreatedAt(new DateTimeImmutable())
+                    ->setIsVerified(false)
                     ->setUser($this->getUser());
 
             $commentRepository->save($comment, true);
-            $this->addFlash('success', 'Votre commentaire a bien été ajouté');
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté, il sera vérifié prochainement');
         }
 
         return $this->render('article/show.html.twig', [

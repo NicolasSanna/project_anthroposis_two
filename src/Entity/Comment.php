@@ -26,6 +26,9 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Article $article = null;
 
+    #[ORM\Column]
+    private ?bool $isVerified = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Comment
     public function setArticle(?Article $article): static
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

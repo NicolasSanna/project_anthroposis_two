@@ -5,16 +5,16 @@
 {% block body %}
 
 <article class="Article">
-    <p class="Article-author">{{ article.user.pseudo }} - {{  article.createdAt|date('d/mY à H:i') }}</p>
+    <p class="Article-author">{{ article.user.pseudo }} - créé le {{  article.createdAt|date('d/mY à H:i') }}</p>
     <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/m/Y à H:i') }}</p>
     <h2 class="Article-title">{{ article.title }}</h2>
     <p class="Article-description">{{ article.description }}</p>
     <p class="Article-category"><a class="Article-category-link" href=""></a></p>
-
-        <div class="Article-boxImg">
-            <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '' ) }}" alt="">
-        </div>
-
+        {% if article.image %}
+            <div class="Article-boxImg">
+                <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '' ) }}" alt="{{ article.image }}">
+            </div>
+        {% endif %}
     {% set hasScriptTags = article.content|replace({'<script>': ''}) != article.content %}
 
     {% if hasScriptTags %}
@@ -39,12 +39,15 @@
 
     {% for comment in article.comments %}
 
-        <div class="Comment-commentList">
-            <p class="Comment-commentList-pseudo">{{comment.user.pseudo}}, le {{comment.createdAt|date('d/m/Y à H:i') }}</p>
-            <p class="Comment-commentList-content">{{comment.content}}</p>
-        </div>
+        {% if comment.isVerified %}
 
-        <hr class="Comment-commentList-hr">
+            <div class="Comment-commentList">
+                <p class="Comment-commentList-pseudo">{{ comment.user.pseudo }}, le {{ comment.createdAt|date('d/m/Y à H:i') }}</p>
+                <p class="Comment-commentList-content">{{ comment.content }}</p>
+            </div>
+            <hr class="Comment-commentList-hr">
+            
+        {% endif %}
 
     {% endfor %}
 

@@ -14,9 +14,11 @@
     {% for article in articles %}
 
         <article class="Home-article">
+        {% if article.image %}
             <div class="Home-article-blockImg">
-                <img class="Home-article-blockImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }}" alt="">
+                <img class="Home-article-blockImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }}" alt="{{ article.image }}">
             </div>
+        {% endif %}
             <div class="Home-article-blockInfos">
                 <div class="Home-article-blockInfos-top">
                     <p class="Home-article-blockInfos-top-author">{{ article.user.pseudo }}</p>

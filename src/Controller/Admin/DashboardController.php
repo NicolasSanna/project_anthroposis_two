@@ -30,7 +30,7 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/informations-personnelles', name:'app_dashboard_personal_informations', methods:['GET', 'POST'])]
+    #[Route(path: '/informations-personnelles', name:'app_dashboard_personal_informations', methods: ['GET', 'POST'])]
     public function edit_personal_informations(UserRepository $userRepository, Request $req): Response
     {
         $user = $userRepository->find($this->getUser());

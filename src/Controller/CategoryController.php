@@ -11,7 +11,7 @@ use App\Repository\CategoryRepository;
 #[Route(path: '/categories')]
 class CategoryController extends AbstractController
 {
-    #[Route(path: '', name: 'app_categories_index', methods:['GET'])]
+    #[Route(path: '', name: 'app_categories_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAll();
@@ -21,7 +21,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/categorie/{slug}', name: 'app_categories_category_show', methods:['GET'])]
+    #[Route(path: '/categorie/{slug}', name: 'app_categories_category_show', methods: ['GET'])]
     public function show(Category $category, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);

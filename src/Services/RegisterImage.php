@@ -19,9 +19,11 @@ class RegisterImage implements RegisterImageInterface
 
         $originalFileName = $file->getClientOriginalName();
 
+        $cleanedFileName = preg_replace('/[^a-zA-Z0-9]+/', '-', strtolower($originalFileName));
+
         $randomString = bin2hex(random_bytes(5));
 
-        $filenameWithoutExtension = pathinfo($originalFileName, PATHINFO_FILENAME);
+        $filenameWithoutExtension = pathinfo($cleanedFileName, PATHINFO_FILENAME);
 
         $extension = $file->getClientOriginalExtension();
 

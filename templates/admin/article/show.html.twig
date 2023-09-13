@@ -5,15 +5,15 @@
 {% block body %}
 
 <article class="Article">
-    <p class="Article-author">{{ article.user.pseudo }} - {{ article.createdAt|date('d/mY à H:i') }}</p>
+    <p class="Article-author">{{ article.user.pseudo }} - créé le {{ article.createdAt|date('d/mY à H:i') }}</p>
     <p class="Article-author">Mis à jour le {{  article.updatedAt|date('d/mY à H:i') }}</p>
     <p class="Article-title">{{ article.title }}</p>
     <p class="Article-description">{{ article.description }}</p>
-
+    {% if article.image %}
         <div class="Article-boxImg">
-            <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }} " alt="">
+            <img class="Article-boxImg-img" src="{{ asset('image_directory/' ~ article.image ~ '') }}" alt="{{ article.image }}">
         </div>
-
+    {% endif %}
     {% set hasScriptTags = article.content|replace({'<script>': ''}) != article.content %}
 
     {% if hasScriptTags %}

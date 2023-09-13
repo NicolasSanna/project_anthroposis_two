@@ -36,7 +36,9 @@ security:
         - { path: ^/admin/categorie/nouveau, roles: ROLE_ADMIN }
         - { path: ^/admin/article/verifier-articles, roles: ROLE_ADMIN }
         - { path: ^/admin/article/verifier-article/.*, roles: ROLE_ADMIN }
-        - { path: '^/admin/categorie/(editer|supprimer)/[^/]+', roles: ROLE_ADMIN }
+        - { path: '^/admin/categorie/(editer|supprimer)/.*', roles: ROLE_ADMIN }
+        - { path: ^/admin/commentaires, roles: ROLE_ADMIN }
+        - { path: ^/admin/commentaires/.*, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_USER }
         
 

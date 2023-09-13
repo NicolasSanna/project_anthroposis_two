@@ -15,7 +15,7 @@ use App\Services\Slugger;
 #[Route(path: '/admin')]
 class CategoryController extends AbstractController
 {
-    #[Route(path: '/categories', name:'app_category_index', methods:['GET'])]
+    #[Route(path: '/categories', name:'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findBy([], ['label' => 'ASC']);
@@ -46,7 +46,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/categorie/editer/{slug}', name:'app_category_edit', methods:['GET', 'POST'])]
+    #[Route(path: '/categorie/editer/{slug}', name:'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(CategoryRepository $categoryRepository, Category $category, Request $req, Slugger $slugger): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $category->getSlug()]);
@@ -69,7 +69,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/categorie/supprimer/{id}', name:'app_category_delete', methods:['POST'])]
+    #[Route(path: '/categorie/supprimer/{id}', name:'app_category_delete', methods: ['POST'])]
     public function delete(Category $category, Request $req, CategoryRepository $categoryRepository): Response|JsonResponse
     {
         $categoryId = $category->getId();

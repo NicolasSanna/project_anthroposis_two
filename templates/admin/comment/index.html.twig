@@ -1,0 +1,40 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block body %}
+
+<div class="Admin">
+
+    <h2 class="Admin-title">Commentaires</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Contenu</th>
+                    <th>Article</th>
+                    <th>Auteur</th>
+                    <th>Date de création</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for comment in comments %}
+
+                    <tr>
+                        <td>{{ comment.content }}</td>
+                        <td>{{ comment.article.title }}</td>
+                        <td>{{ comment.user.pseudo }}</td>
+                        <td>{{ comment.createdAt|date('d/m/Y à H:i') }}</td>
+                        <td><a class="Admin-show" href="{{ path('app_comment_check', {'id': comment.id }) }}">Accepter</a></td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+</div>
+
+{% endblock %}

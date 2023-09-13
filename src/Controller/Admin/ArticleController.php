@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
         $this->slugger = $slugger;
     }
 
-    #[Route(path: '/article/nouveau', name: 'app_article_new', methods:['GET', 'POST'])]
+    #[Route(path: '/article/nouveau', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $req, ArticleRepository $articleRepository, RegisterImage $registerImage): Response
     {
         $article = new Article();
@@ -67,7 +67,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/article/verifier-articles', name: 'app_articles_verify_index', methods:['GET'])]
+    #[Route(path: '/article/verifier-articles', name: 'app_articles_verify_index', methods: ['GET'])]
     public function verify_index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy(['isVerified' => false]);
@@ -77,7 +77,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/article/verifier-article/{slug}', name: 'app_article_verify_check', methods:['GET'])]
+    #[Route(path: '/article/verifier-article/{slug}', name: 'app_article_verify_check', methods: ['GET'])]
     public function verifiy_check(Article $article, ArticleRepository $articleRepository): RedirectResponse
     {
 
@@ -87,7 +87,7 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('app_articles_verify_index');
     }
 
-    #[Route(path: '/article/mes-articles', name: 'app_article_index', methods:['GET'])]
+    #[Route(path: '/article/mes-articles', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy(['user' => $this->getUser()]);
@@ -99,7 +99,7 @@ class ArticleController extends AbstractController
 
 
 
-    #[Route(path: '/article/{slug}', name: 'app_article_show', methods:['GET'])]
+    #[Route(path: '/article/{slug}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         $article = $articleRepository->findOneBy(['user' => $this->getUser(), 'slug' => $article->getSlug()]);
