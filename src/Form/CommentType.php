@@ -25,9 +25,10 @@ class CommentType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'max' => 10000,
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
                         'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Type([
                         'type' => 'string',

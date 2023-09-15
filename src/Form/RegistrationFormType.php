@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                 ],
             ])
@@ -61,7 +61,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                 ],
             ])

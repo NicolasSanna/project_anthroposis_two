@@ -28,7 +28,7 @@ class UserType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Type([
                         'type' => 'string',
@@ -46,7 +46,7 @@ class UserType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Type([
                         'type' => 'string',
@@ -64,7 +64,7 @@ class UserType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Email([
                         'message' => 'L\'adresse email "{{ value }}" n\'est pas valide.',
@@ -81,7 +81,7 @@ class UserType extends AbstractType
                     ]),
                     new Length([
                         'max' => 255,
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Type([
                         'type' => 'string',

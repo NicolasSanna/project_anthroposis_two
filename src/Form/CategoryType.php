@@ -27,7 +27,7 @@ class CategoryType extends AbstractType
                         'min' => 6,
                         'max' => 255,
                         'minMessage' => 'le champ doit contenir au moins {{ limit }} caractères',
-                        'maxMessage' => 'Le champ doit contenir moins de  {{ limit }} caractères',
+                        'maxMessage' => 'Le champ doit contenir moins de {{ limit }} caractères',
                     ]),
                     new Type([
                         'type' => 'string',
