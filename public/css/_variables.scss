@@ -1,3 +1,4 @@
+// IMPORT DES COULEURS ET DES POLICES D'ÉCRITURES
 @font-face 
 {
     font-family: 'Baskerville';
@@ -6,6 +7,7 @@
     src: url("../fonts/Raleway-Regular.ttf") format("truetype");
 }
 
+// COULEURS ET POLICES D'ÉCRITURE UTILISÉES
 $baskerville: 'Baskerville';
 $raleway: 'Raleway';
 $firstColor:#917237;

@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Repository\UserRepository;
-use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route(path: '/admin')]
 class DashboardController extends AbstractController
 {
-
-
     #[Route(path: '/tableau-de-bord', name: 'app_dashboard', methods:['GET'])]
     public function index(UserRepository $userRepository): Response
     {
