@@ -97,18 +97,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-
-
-    #[Route(path: '/article/{slug}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article, ArticleRepository $articleRepository): Response
-    {
-        $article = $articleRepository->findOneBy(['user' => $this->getUser(), 'slug' => $article->getSlug()]);
-
-        return $this->render('admin/article/show.html.twig', [
-            'article' => $article
-        ]);
-    }
-
     #[Route(path: '/article/editer/{slug}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $req, Article $article, ArticleRepository $articleRepository, RegisterImage $registerImage, Filesystem $filesystem, UserRepository $userRepository): Response
     {
@@ -199,5 +187,15 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route(path: '/article/{slug}', name: 'app_article_show', methods: ['GET'])]
+    public function show(Article $article, ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->findOneBy(['user' => $this->getUser(), 'slug' => $article->getSlug()]);
+
+        return $this->render('admin/article/show.html.twig', [
+            'article' => $article
+        ]);
     }
 }
