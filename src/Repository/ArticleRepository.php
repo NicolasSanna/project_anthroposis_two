@@ -57,6 +57,7 @@ class ArticleRepository extends ServiceEntityRepository
         ;
    }
 
+    // Moteur de recherche    
    public function searchEngine(string $criteria = null): array
    {
         return $this->createQueryBuilder('a')

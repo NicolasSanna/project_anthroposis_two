@@ -38,6 +38,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            // Gestion de l'image si différent de null
             if($form->get('image')->getData() != null)
             {
                 $registerImage->setForm($form);
@@ -123,6 +124,7 @@ class ArticleController extends AbstractController
                     ->setSlug($this->slugger->slugify($form->get('title')->getData()))
                     ->setUpdatedAt(new DateTimeImmutable());
 
+            // Gestion de l'image si différent de null
             if ($form->get('image')->getData() != null) 
             {
 
@@ -156,6 +158,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    // Méthode asynchrone de suppression d'un article.
     #[Route(path: '/article/supprimer/{slug}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $req, Article $article, ArticleRepository $articleRepository, Filesystem $filesystem, UserRepository $userRepository): Response|JsonResponse
     {
@@ -181,6 +184,7 @@ class ArticleController extends AbstractController
             $articleRepository->remove($article, true);
         }
 
+        // On rnevoie au front le numéro d'identifiant correspondant à la ligne du tableau du front pour donner une impression de suppression directe.
         if($req->isXmlHttpRequest())
         {
             return $this->json($articleId);
