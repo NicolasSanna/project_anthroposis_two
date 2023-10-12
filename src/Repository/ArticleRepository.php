@@ -60,14 +60,28 @@ class ArticleRepository extends ServiceEntityRepository
     // Moteur de recherche    
    public function searchEngine(string $criteria = null): array
    {
-        return $this->createQueryBuilder('a')
-            ->where('a.title LIKE :criteria')
-            ->orWhere('a.content LIKE :criteria')
-            ->orWhere('a.description LIKE :criteria')
-            ->setParameter('criteria', '%' . $criteria . '%')
-            ->getQuery()
-            ->getResult()
-        ;
+
+        // EN DQL :
+
+        // return $this->createQueryBuilder('a')
+        //     ->where('a.title LIKE :criteria')
+        //     ->orWhere('a.content LIKE :criteria')
+        //     ->orWhere('a.description LIKE :criteria')
+        //     ->setParameter('criteria', '%' . $criteria . '%')
+        //     ->getQuery()
+        //     ->getResult()
+        // ;
+
+        // EN SQL AVEC APPEL DE PROCEDURE STOCKEE :
+        
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'CALL SP_SearchEngine(:search)';
+        $results = $conn->executeQuery($sql, 
+            ['search' => $criteria]
+        );
+
+        return $results->fetchAllAssociative();
+
    }
 
 //    /**

@@ -15,8 +15,8 @@
         {% for article in articles %}
 
             <div class="Page-articles-article">
-                <p class="Page-articles-article-author">{{ article.user.pseudo }}</p>
-                <p class="Page-articles-article-date">{{ article.createdAt|date('d/m/Y à H:i') }}</p>
+                <p class="Page-articles-article-author">{{ article.pseudo }}</p>
+                <p class="Page-articles-article-date">{{ article.created_at_fr }}</p>
                 <h3 
                     class="Page-articles-article-title"
                 >
