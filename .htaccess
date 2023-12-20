@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Rediriger toutes les requêtes vers le dossier public
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L]
+
+    # Laisser passer les requêtes vers les fichiers statiques
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Rediriger toutes les requêtes non existantes vers index.php
+    RewriteRule ^(.*)$ /public/index.php [QSA,L]
+</IfModule>
