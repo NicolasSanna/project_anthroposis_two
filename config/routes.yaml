@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+error_404:
+    path: /{url}
+    controller: App\Controller\ErrorController::error404
+    requirements:
+        url: ".*"
